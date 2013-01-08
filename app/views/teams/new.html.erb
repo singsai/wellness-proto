@@ -1,0 +1,90 @@
+<% provide(:title, 'Team Signup') %>
+<h1>Team Sign Up</h1>
+<%#= @bert = "hello" %>
+<script>
+ window.captain_email = "ntang2@holmanauto.com";
+
+$(document).ready(function(e) {
+  console.log('Total # of remove links: '+ $('.remove').length);
+  
+  for(i=0; i<$('.remove').length; i++){
+    $('.remove')[i].id = "remove" + i;
+    $('#remove' + i).text('');    
+    //$('#remove' + i).toggle();
+  }    
+  // $('.remove')[0].id = "remove01";
+  // $('#remove01').toggle();
+
+  $('#team_users_attributes_0_email').val(window.captain_email);
+  $('#team_users_attributes_0_email').attr("readonly", true);
+//  $('#team_users_attributes_0_email').prop('disabled',true);
+  
+  $('FORM').nestedFields({
+      afterInsert: function(item) {        
+        if($('.item').length > 10) {
+          $('#add_member').toggle();
+          console.log(item + ' is the last possible member that can be added');
+          console.log('Total # of remove links: '+ $('.remove').length);
+        }                  
+      },
+      afterRemove: function(item) {
+        if($('#add_member').is(':visible')==false && $('.item').length <= 10 ) {
+          $('#add_member').toggle();
+        }                
+        console.log(item + ' was removed.');
+      }      
+                        
+    });
+}); //end of $(document).ready
+
+
+// $(document).ready(function() {
+//   // Handler for .ready() called.
+//   if($('.item').length > 1) {
+//     alert()
+//     $('#add_member').toggle()
+//   }
+// });
+
+</script>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @team do |f| %>
+      <% if @team.errors.any? %>
+        <%= f.object.errors.inspect %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            The form contains <%= pluralize_without_count(@team.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% @team.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div>                
+      <% end %>
+    
+      <div class="field">
+        <%= f.label :name, "Team Name" %>
+        <%= f.text_field :name %>
+      </div>
+
+      <h2>Members</h2>      
+      <%#= text_field_tag 'captain', current_user.email, :readonly => true %>
+      <div class="items">
+        <%= f.nested_fields_for :users do |f| %>        
+          <fieldset class="item">
+            <%= f.text_field :email %>
+            <a href="#" class="remove">x</a>
+            <%= f.hidden_field :id %>
+            <%= f.hidden_field :_destroy %>
+          </fieldset>
+        <% end %>
+      </div>
+      <a id="add_member" href="#" class="add">add member</a>      
+ 
+      <div class="actions"><%= f.submit "Sign Up", class: "btn btn-inverse" %></div>
+    <% end %>
+  </div>
+</div>
