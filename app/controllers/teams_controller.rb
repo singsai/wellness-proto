@@ -2,14 +2,7 @@ class TeamsController < ApplicationController
   def new
     @team = Team.new
     5.times { @team.users.build } 
-    
-    require 'rufus/mnemo'
-    
-    random_number = Random.rand(100000..999999)
-    arraytized_string = random_number.to_s.split('')
-    random_string = arraytized_string.shuffle.join
-    @mnemo = Rufus::Mnemo.from_i(random_string.to_i)
-    
+        
     #@mnemo = Rufus::Mnemo.from_i(Random.rand(100_000..999_999))
     
     respond_to do |format|
