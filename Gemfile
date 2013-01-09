@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails'
 gem 'pry'
 
 # Bundle edge Rails instead:
@@ -8,6 +8,7 @@ gem 'pry'
 
 gem 'sqlite3'
 gem 'awesome_nested_fields'
+gem 'rufus-mnemo'
 
 
 # Gems used only for assets and not required
