@@ -38,6 +38,14 @@ module WellnessProto
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    # Custom Lib Requires
+    #
+    %w(
+      assignable
+    ).each do | lib |
+      require "#{ config.root }/lib/#{ lib }"
+    end
+    
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
