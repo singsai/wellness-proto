@@ -16,11 +16,13 @@ class TeamsController < ApplicationController
   
     respond_to do |format|
       if @team.save        
-        params[:team][:users_attributes].values.map do |member|          
+#binding.pry        
+        params[:team][:users_attributes].values.map do |member|      
+          @member = User.where(:email => member["email"]).last  #Change this later since emails should be unique anyway  
           @membership = Membership.new
           @membership.assign \
-           :team_id => @team, 
-           :user_id => User.where(:email => member["email"]).last.id, #Change this later since emails should be unique anyway
+           :team_id => @team.id, 
+           :user_id => @member.id, 
            :role_id => 0
           @membership.save
         end

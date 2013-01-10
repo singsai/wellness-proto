@@ -17,7 +17,7 @@ class Membership < ActiveRecord::Base
   include Assignable
 
   belongs_to :user
-  before_save :create_shib
+  before_save :create_shib #:create_remember_token
 
   private
     def create_shib             
