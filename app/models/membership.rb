@@ -1,11 +1,23 @@
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id         :integer          not null, primary key
+#  team_id    :integer
+#  user_id    :integer
+#  role_id    :integer
+#  shib       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rufus/mnemo'
 
 class Membership < ActiveRecord::Base  
   include Assignable
 
   belongs_to :user
-
-  before_save :create_shib #:create_remember_token
+  before_save :create_shib
 
   private
     def create_shib             
