@@ -19,6 +19,11 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   before_save :create_shib #:create_remember_token
 
+  has_many :weigh_ins
+  accepts_nested_attributes_for :weigh_ins
+  
+  attr_accessible :weigh_ins_attributes
+
   private
     def create_shib             
       random_number = Random.rand(100000..999999)

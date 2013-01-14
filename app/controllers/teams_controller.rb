@@ -16,7 +16,6 @@ class TeamsController < ApplicationController
   
     respond_to do |format|
       if @team.save        
-#binding.pry        
         params[:team][:users_attributes].values.map do |member|      
           @member = User.where(:email => member["email"]).last  #Change this later since emails should be unique anyway  
           @membership = Membership.new
@@ -25,6 +24,7 @@ class TeamsController < ApplicationController
            :user_id => @member.id, 
            :role_id => 0
           @membership.save
+          3.times { @membership.weigh_ins.create }
         end
         
         format.html { render :action => "new", :notice => 'Team was successfully created.' }
