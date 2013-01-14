@@ -1,0 +1,13 @@
+<%= form_for @membership do |f| %>    
+  Team <%= @membership.team_id %> 
+  <br />
+  <%= @membership.user.email %>
+  <ul>
+    <%= f.nested_fields_for :weigh_ins do |f| %>
+      <li>Week <%= f.object.week %> <%= f.text_field :weight %></li>
+    <% end %>
+  </ul>
+  <%= f.submit %>
+<% end %>
+
+

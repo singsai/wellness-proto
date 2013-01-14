@@ -70,7 +70,7 @@ $(document).ready(function(e) {
     
       <div class="field">
         <%= f.label :name, "Team Name" %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :tabindex => 1 %>
       </div>
 
       <h2>Members</h2>      
@@ -78,16 +78,16 @@ $(document).ready(function(e) {
       <div class="items">
         <%= f.nested_fields_for :users do |f| %>        
           <fieldset class="item">
-            <%= f.text_field :email %>
+            <%= f.text_field :email, :tabindex => 1 %>
             <a href="#" class="remove">x</a>
             <%= f.hidden_field :id %>
             <%= f.hidden_field :_destroy %>
           </fieldset>
         <% end %>
       </div>
-      <a id="add_member" href="#" class="add">add member</a>      
+      <a id="add_member" href="#" class="add", tabindex = "1">add member</a>      
  
-      <div class="actions"><%= f.submit "Sign Up", class: "btn btn-inverse" %></div>
+      <div class="actions"><%= f.submit "Sign Up", class: "btn btn-inverse", :tabindex => 1 %></div>
     <% end %>
   </div>
 </div>

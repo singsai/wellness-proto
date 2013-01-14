@@ -1,6 +1,8 @@
 WellnessProto::Application.routes.draw do
   resources :users
   resources :teams
+  resources :memberships
+  #resources :weigh_ins
   resources :people
   
   # The priority is based upon order of creation:

@@ -12,12 +12,13 @@
 #
 
 require 'rufus/mnemo'
+require 'pry'
 
 class Membership < ActiveRecord::Base  
   include Assignable
 
   belongs_to :user
-  before_save :create_shib #:create_remember_token
+  before_create :create_shib #:create_remember_token
 
   has_many :weigh_ins
   accepts_nested_attributes_for :weigh_ins
@@ -25,11 +26,12 @@ class Membership < ActiveRecord::Base
   attr_accessible :weigh_ins_attributes
 
   private
-    def create_shib             
-      random_number = Random.rand(100000..999999)
-      arraytized_string = random_number.to_s.split('')
-      random_string = arraytized_string.shuffle.join
-      mnemo = Rufus::Mnemo.from_i(random_string.to_i)
-      self.shib = mnemo      
+    def create_shib                   
+      new_membership_id = Membership.count + 1      
+      y = Time.now.strftime("%y")
+    	m = Time.now.strftime("%m")
+    	d = Time.now.strftime("%d")    	                              
+      mnemo = new_membership_id.to_s + y.to_s + m.to_s + d.to_s            
+      self.shib = Rufus::Mnemo.from_i(mnemo.to_i)
     end
 end

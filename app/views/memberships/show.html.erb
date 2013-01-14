@@ -1,0 +1,13 @@
+<%= form_for :weighins do |f| %>    
+  <ul>
+    <% for weighin in @weighins %>
+    <li>
+      <%= f.label :week %> <%= weighin.week %>
+      <%= weighin.weight %>
+    </li>
+    <% end %>
+  </ul>
+  <%= f.submit %>
+<% end %>
+
+
