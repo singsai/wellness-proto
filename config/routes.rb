@@ -8,7 +8,7 @@ WellnessProto::Application.routes.draw do
   resources :teams
   resources :memberships
   resources :sessions
-  #resources :weigh_ins
+  resources :locations
   resources :people
   
   
