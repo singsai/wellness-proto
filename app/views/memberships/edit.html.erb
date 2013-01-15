@@ -3,6 +3,9 @@
   <br />
   <%= @membership.user.email %>
   <br /><br />
+  <%= f.label :phone_number, "Phone" %>
+  <%= f.text_field :phone_number %>
+  <br /><br />
   <%= f.label :location_id %>
   <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true} %>
   <ul>

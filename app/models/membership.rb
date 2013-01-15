@@ -25,7 +25,7 @@ class Membership < ActiveRecord::Base
   
   before_create :create_shib #:create_remember_token
   
-  attr_accessible :weigh_ins_attributes, :location_id
+  attr_accessible :weigh_ins_attributes, :location_id, :phone_number
 
   private
     def create_shib                   
