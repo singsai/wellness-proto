@@ -12,11 +12,11 @@ class MembershipsController < ApplicationController
   def update
     @membership = Membership.find(params[:id])
     
-    if @membership.update_attributes(params[:membership])
-      redirect_to edit_membership_path(@membership), notice:"The weight has been edited"
+    respond_to do |format|
+      if @membership.update_attributes(params[:membership])
+        format.html { render :action => "edit", :notice => 'Weights edited.' }
+        #redirect_to edit_membership_path(@membership), notice:"The weight has been edited"
+      end
     end
-    
-    # respond_to do |format|
-    # end 
   end
 end

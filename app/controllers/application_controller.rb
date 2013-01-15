@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
       @current_user ||= Membership.where(:shib => session[:shib]) if session[:shib]
     end
     helper_method :current_user
+    
+    # def authorize
+    #   redirect_to login_url, alert: "Not authorized" if current_user.nil?
+    # end
 end

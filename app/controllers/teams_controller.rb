@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
            :user_id => @member.id, 
            :role_id => 0
           @membership.save
-          3.times { @membership.weigh_ins.create }
+          4.times { @membership.weigh_ins.create }
         end
         
         format.html { render :action => "new", :notice => 'Team was successfully created.' }

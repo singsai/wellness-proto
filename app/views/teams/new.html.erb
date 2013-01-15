@@ -4,6 +4,8 @@
 <script>
  window.captain_email = "ntang2@holmanauto.com";
 
+ var max_team_members = 10;
+
 $(document).ready(function(e) {
   console.log('Total # of remove links: '+ $('.remove').length);
   
@@ -19,12 +21,9 @@ $(document).ready(function(e) {
   // $('#team_users_attributes_0_email').val(window.captain_email);
   // $('#team_users_attributes_0_email').attr("readonly", true);
 
-//This is no good
-//  $('#team_users_attributes_0_email').prop('disabled',true);
-  
   $('FORM').nestedFields({
       afterInsert: function(item) {        
-        if($('.item').length > 10) {
+        if($('.item').length > max_team_members) {
           $('#add_member').toggle();
           console.log(item + ' is the last possible member that can be added');
           console.log('Total # of remove links: '+ $('.remove').length);
