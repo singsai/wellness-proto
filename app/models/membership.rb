@@ -18,12 +18,14 @@ class Membership < ActiveRecord::Base
   include Assignable
 
   belongs_to :user
-  before_create :create_shib #:create_remember_token
-
+  belongs_to :location
+  
   has_many :weigh_ins
   accepts_nested_attributes_for :weigh_ins
   
-  attr_accessible :weigh_ins_attributes
+  before_create :create_shib #:create_remember_token
+  
+  attr_accessible :weigh_ins_attributes, :location_id
 
   private
     def create_shib                   
