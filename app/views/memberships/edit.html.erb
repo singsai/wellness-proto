@@ -4,7 +4,7 @@
   <%= @membership.user.email %>
   <br /><br />
   <%= f.label :location_id %>
-  <%= f.collection_select :location_id, Location.all, :id, :name, :prompt => true %>
+  <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true} %>
   <ul>
     <%= f.nested_fields_for :weigh_ins do |f| %>
       <li>Week <%= f.object.week %> <%= f.text_field :weight %></li>      

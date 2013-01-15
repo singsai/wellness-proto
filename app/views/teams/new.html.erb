@@ -72,7 +72,7 @@ $(document).ready(function(e) {
         <%= f.text_field :name, :tabindex => 1 %>
         <br /><br />
         <%= f.label :location_id, "Default location" %>
-        <%= f.collection_select :location_id, Location.all, :id, :name, :prompt => true %>
+        <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true}, {:tabindex => 1} %>
       </div>
 
       <h2>Members</h2>      
