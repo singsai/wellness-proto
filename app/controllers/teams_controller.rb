@@ -22,7 +22,8 @@ class TeamsController < ApplicationController
           @membership.assign \
            :team_id => @team.id, 
            :user_id => @member.id, 
-           :role_id => 0
+           :role_id => 0,
+           :location_id => @team.location_id
           @membership.save
           4.times { @membership.weigh_ins.create }
         end

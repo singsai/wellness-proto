@@ -70,6 +70,9 @@ $(document).ready(function(e) {
       <div class="field">
         <%= f.label :name, "Team Name" %>
         <%= f.text_field :name, :tabindex => 1 %>
+        <br /><br />
+        <%= f.label :location_id, "Default location" %>
+        <%= f.collection_select :location_id, Location.all, :id, :name, :prompt => true %>
       </div>
 
       <h2>Members</h2>      
