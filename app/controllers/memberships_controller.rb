@@ -12,10 +12,11 @@ class MembershipsController < ApplicationController
   def update
     @membership = Membership.find(params[:id])
     
-    respond_to do |format|
-      if @membership.update_attributes(params[:membership])
-        redirect_to @membership
-      end
-    end 
+    if @membership.update_attributes(params[:membership])
+      redirect_to edit_membership_path(@membership), notice:"The weight has been edited"
+    end
+    
+    # respond_to do |format|
+    # end 
   end
 end

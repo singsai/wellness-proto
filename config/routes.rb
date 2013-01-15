@@ -1,9 +1,16 @@
 WellnessProto::Application.routes.draw do
+  #root to: ':memberships#show/:id' 
+
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
   resources :users
   resources :teams
   resources :memberships
+  resources :sessions
   #resources :weigh_ins
   resources :people
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
