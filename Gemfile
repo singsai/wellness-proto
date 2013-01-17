@@ -8,6 +8,8 @@ gem 'rails'
 gem 'sqlite3'
 gem 'awesome_nested_fields'
 gem 'rufus-mnemo'
+gem 'countries'
+gem 'phony_rails'
 
 group :development do
   gem 'annotate'

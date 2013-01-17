@@ -1,10 +1,33 @@
-<%= form_for @membership do |f| %>    
+<%= form_for @membership do |f| %>
+<% @selected_country = Country.find_country_by_alpha2(@membership.country_code).alpha2 unless @membership.country_code.nil? %>
+<% if @membership.errors.any? %>
+  <%#= f.object.errors.inspect %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize_without_count(@membership.errors.count, "error") %>.
+      <br/>
+      <%= "@selected_country: #{@selected_country}" %>
+    </div>
+    <ul>
+      <% @membership.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
+      <% end %>
+    </ul>
+  </div>                
+<% end %>
+    
   Team <%= @membership.team_id %> 
   <br />
   <%= @membership.user.email %>
   <br /><br />
+  <%#= f.label :country_code %><%#= f.text_field :country_code, :size=>"4", :placeholder => "1" %> 
+  <%#= f.collection_select :country_code, Country.order(:name), :id, :name, {:prompt => "Please select if you own a non-US phone number"} %>
+  <%= f.label :country_code, "Please change this if you own a non-US phone number" %> 
+  <br />
+  <%= select("kountry", :code, Kountry.all.collect {|p| [ p.name, p.code ] }, {:selected => @selected_country, :prompt => "Please select if you own a non-US phone number"}) %>
+  <br /><br />
   <%= f.label :phone_number, "Phone" %>
-  <%= f.text_field :phone_number %>
+  <%= f.text_field :phone_number, :placeholder => "area code-phone number" %>
   <br /><br />
   <%= f.label :location_id %>
   <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true} %>

@@ -12,7 +12,7 @@
 class Team < ActiveRecord::Base
   attr_accessible :name, :users_attributes, :competition_id, :location_id
 
-  belongs_to :competition
+  belongs_to :competition  
   belongs_to :location
 
   has_many :users    
