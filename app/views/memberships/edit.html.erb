@@ -1,5 +1,4 @@
 <%= form_for @membership do |f| %>
-<% @selected_country = Country.find_country_by_alpha2(@membership.country_code).alpha2 unless @membership.country_code.nil? %>
 <% if @membership.errors.any? %>
   <%#= f.object.errors.inspect %>
   <div id="error_explanation">
@@ -24,7 +23,7 @@
   <%#= f.collection_select :country_code, Country.order(:name), :id, :name, {:prompt => "Please select if you own a non-US phone number"} %>
   <%= f.label :country_code, "Please change this if you own a non-US phone number" %> 
   <br />
-  <%= select("kountry", :code, Kountry.all.collect {|p| [ p.name, p.code ] }, {:selected => @selected_country, :prompt => "Please select if you own a non-US phone number"}) %>
+  <%= select("kountry", :code, Kountry.all.collect {|p| [ p.name, p.code ] }, {:selected => selected_country, :prompt => "Please select if you own a non-US phone number"}) %>
   <br /><br />
   <%= f.label :phone_number, "Phone" %>
   <%= f.text_field :phone_number, :placeholder => "area code-phone number" %>
