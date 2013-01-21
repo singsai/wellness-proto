@@ -13,12 +13,13 @@ class TeamsController < ApplicationController
 
   def create    
     @team = Team.new(params[:team])
+    @team.competition_id = Competition.last.id
   
     respond_to do |format|
       if @team.save        
 #binding.pry        
         params[:team][:users_attributes].values.map do |member|      
-          @member = User.where(:email => member["email"]).last  #Change this later since emails should be unique anyway  
+          @member = User.where(:email => member["email"])#.last  #Change this later since emails should be unique anyway  
           @membership = Membership.new
           @membership.assign \
            :team_id => @team.id, 

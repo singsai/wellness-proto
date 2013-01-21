@@ -9,7 +9,7 @@
 #
 
 class Competition < ActiveRecord::Base  
-  attr_accessible :name  
+  attr_accessible :name, :start_date
   
   has_many :teams
   

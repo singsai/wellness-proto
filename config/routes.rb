@@ -1,4 +1,10 @@
 WellnessProto::Application.routes.draw do
+  get "teams/index"
+
+  get "memberships/index"
+
+  get "dashboard/index"
+
   #root to: ':memberships#show/:id' 
 
   get 'login', to: 'sessions#new', as: 'login'
@@ -10,6 +16,23 @@ WellnessProto::Application.routes.draw do
   resources :sessions
   resources :locations
   resources :people
+  
+  namespace :admin do
+    get '', to: 'dashboard#index', as: "/"
+    
+    resources :teams do
+      member do
+        get :send_reminder
+        #get 'admin/teams/:id/send_reminder' => 'admin/teams#send_reminder'
+      end
+    end
+    
+    resources :competitions
+    
+    resources :memberships do    
+      resources :users      
+    end  
+  end
   
   
   # The priority is based upon order of creation:

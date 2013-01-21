@@ -1,9 +1,12 @@
-body { background-color: #dedede; color: #333; }
+@import "bootstrap";
+
+body { background-color: #fffff; color: #333; }
 
 body, p, ol, ul, td {
   font-family: "Helvetica Neue", sans-serif;
   font-size:   14px;
   line-height: 21px;
+  list-style: decimal;
 }
 
 pre {
@@ -36,7 +39,7 @@ div.field, div.actions {
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #fffff0;
 }
 
 #error_explanation h2 {

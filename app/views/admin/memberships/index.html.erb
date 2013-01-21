@@ -1,0 +1,6 @@
+<h1>Admin::Memberships#index test</h1>
+<ul>  
+<% @memberships.each do |m| %>
+  <li><%= m.id %> - <%= m.user.email if m.user_id %> - <%= m.weigh_ins.first.weight if m.weigh_ins.first  %> - <%= m.shib %></li>
+<% end %>
+</ul>

@@ -1,0 +1,29 @@
+<%#= @team.inspect %>
+<br /><br />
+<!-- Number of members on Team --> <i><%= @team.name %>:</i> <%= @team.memberships.count %>
+<br/>
+<%= link_to 'Send notification to all members', send_reminder_admin_team_path %>
+<ul>  
+<% @team.memberships.each do |m| %>
+  <li><%= m.id %> - <%= User.find(m.user_id).email if m.user_id %>
+  <br />
+    <%= "shib: #{m.shib}" %>
+  <br />
+    <%= "location: #{Location.find(m.location_id).name unless m.location_id.nil?}"%>
+  <br />
+  <b>Weigh-Ins</b>
+    <ul>      
+    <% m.weigh_ins.each do |w| %>      
+      <li>
+        week: <%= "#{w.week}" %> |
+        weigh_in id: <%= "#{w.id}" %> | 
+        start_date: <%= "#{w.start_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.start_date %> | 
+        end_date: <%= "#{w.end_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.end_date %> |        
+        weight: <%= w.weight %>         
+      </li>
+    <% end %>    
+    </ul>
+  </li>
+  <br />
+<% end %>
+</ul>

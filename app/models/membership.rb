@@ -32,10 +32,18 @@ class Membership < ActiveRecord::Base
   
   before_validation :check_phone#, :only => :edit
   
-  private
+  def send_first_reminder
+    i=0
+    self.weigh_ins.each do |wi|
+      if wi.weight.nil? and i==0
+        MembershipMailer.reminder_email(wi.week, self.user.email).deliver
+        i+=1
+      end
+    end
+  end  
   
+  private  
     def check_phone            
-#binding.pry      
       unless phone_number.nil? or phone_number.empty? 
         number = phone_number.dup
         num_check = phone_number.gsub(/\D/,'')
@@ -43,8 +51,6 @@ class Membership < ActiveRecord::Base
           errors.add :phone_number, "Phone number must be digits only and not nil/empty"
           return false
         end      
-#binding.pry      
-        #number = "#{country_code}#{number}" unless number.starts_with?(c.country_code)
         number = Phony.normalize(number)
 
         self.phone_number = number
@@ -53,10 +59,12 @@ class Membership < ActiveRecord::Base
   
     def create_shib                   
       new_membership_id = Membership.count + 1      
-      y = Time.now.strftime("%y")
-    	m = Time.now.strftime("%m")
-    	d = Time.now.strftime("%d")    	                              
-      mnemo = new_membership_id.to_s + y.to_s + m.to_s + d.to_s            
-      self.shib = Rufus::Mnemo.from_i(mnemo.to_i)
+      dictionary = File.open("dictionary.txt", 'r').readlines
+      self.shib = dictionary[rand(dictionary.count)].chomp
+      #       y = Time.now.strftime("%y")
+      # m = Time.now.strftime("%m")
+      # d = Time.now.strftime("%d")                                   
+      #       mnemo = new_membership_id.to_s + y.to_s + m.to_s + d.to_s            
+      #       self.shib = Rufus::Mnemo.from_i(mnemo.to_i)
     end
 end
