@@ -8,19 +8,44 @@ class Admin::TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
   
-  def send_reminder    
+  def send_week1_reminder    
     @team = Team.find(params[:id])
     respond_to do |format|
       @team.memberships.each do |m|
-        m.send_first_reminder
+        m.send_week1_reminder
       end      
       format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
-
-      # if @team.memberships             
-      #   format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }
-      # else
-      #   format.html { render :action => "edit", :notice => "Problems son"  }
-      # end
     end        
   end
+
+  def send_week2_reminder    
+    @team = Team.find(params[:id])
+    respond_to do |format|
+      @team.memberships.each do |m|
+        m.send_week2_reminder
+      end      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+    end        
+  end
+
+  def send_week3_reminder    
+    @team = Team.find(params[:id])
+    respond_to do |format|
+      @team.memberships.each do |m|
+        m.send_week3_reminder
+      end      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+    end        
+  end
+
+  def send_week4_reminder    
+    @team = Team.find(params[:id])
+    respond_to do |format|
+      @team.memberships.each do |m|
+        m.send_week4_reminder
+      end      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+    end        
+  end
+  
 end

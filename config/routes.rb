@@ -11,7 +11,16 @@ WellnessProto::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
-  resources :teams
+
+  resources :teams do
+    member do
+      get :send_week1_reminder
+      get :send_week2_reminder
+      get :send_week3_reminder
+      get :send_week4_reminder    
+    end
+  end
+
   resources :memberships
   resources :sessions
   resources :locations
@@ -22,7 +31,10 @@ WellnessProto::Application.routes.draw do
     
     resources :teams do
       member do
-        get :send_reminder
+        get :send_week1_reminder
+        get :send_week2_reminder
+        get :send_week3_reminder
+        get :send_week4_reminder    
         #get 'admin/teams/:id/send_reminder' => 'admin/teams#send_reminder'
       end
     end

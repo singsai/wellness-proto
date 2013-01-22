@@ -1,6 +1,10 @@
 require 'pry'
 
 class TeamsController < ApplicationController
+  def show
+    @team = Team.find(params[:id])
+  end
+
   def new
     @team = Team.new
     2.times { @team.users.build } 
@@ -10,6 +14,17 @@ class TeamsController < ApplicationController
       #format.xml  { render :xml => @team }
     end    
   end
+
+  def send_week1_reminder    
+    @team = Team.find(params[:id])
+    respond_to do |format|
+      @team.memberships.each do |m|
+        m.send_week1_reminder
+      end      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+    end        
+  end
+
 
   def create    
     @team = Team.new(params[:team])

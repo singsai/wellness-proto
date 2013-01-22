@@ -35,14 +35,36 @@ class Membership < ActiveRecord::Base
   def send_first_reminder
     i=0
     self.weigh_ins.each do |wi|
-      if wi.weight.nil? and i==0
+      if wi.weight.nil? && i==0 
         MembershipMailer.reminder_email(wi.week, self.user.email).deliver
         i+=1
       end
     end
   end  
   
+  def method_missing(method_name, *args)
+    match = method_name.to_s.match(/^send_week(\w+)_reminder/)
+    if match 
+      self.class.class_eval do
+        define_method(method_name) do
+          i=0
+          self.weigh_ins.each do |wi|
+            if wi.weight.nil? && i==0 && wi.week == match[1].to_i
+              MembershipMailer.reminder_email(wi.week, self.user.email).deliver
+              i+=1
+            end
+          end
+        end
+      end
+      send(method_name)
+    else
+      super
+    end
+  end
+  
   private  
+  
+  
     def check_phone            
       unless phone_number.nil? or phone_number.empty? 
         number = phone_number.dup
