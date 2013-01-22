@@ -10,7 +10,7 @@ Send weigh-in reminders for:<br/>
 
 <% @team.memberships.each do |m| %>
 <table class="table table-bordered table-hover table-nonfluid">
-  <caption><%= "#{m.user.email} " "(#{Location.find(m.location_id).name}) " %></caption>
+  <caption><%= "#{m.user.email} "%><%= "(#{Location.find(m.location_id).name}) " if m.location_id %></caption>
   <thead>  
   <tr>
   <th>week</th>

@@ -1,5 +1,5 @@
 require 'pry'
-class Admin::CompetitionsController < ApplicationController
+class CompetitionsController < ApplicationController
   def index
     @competitions = Competition.all
   end

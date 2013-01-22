@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
 
   def create    
     @team = Team.new(params[:team])
-    @team.competition_id = Competition.last.id
+    @team.competition_id = Competition.first.id
   
     respond_to do |format|
       if @team.save        

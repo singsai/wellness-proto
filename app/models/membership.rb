@@ -62,9 +62,7 @@ class Membership < ActiveRecord::Base
     end
   end
   
-  private  
-  
-  
+  private    
     def check_phone            
       unless phone_number.nil? or phone_number.empty? 
         number = phone_number.dup

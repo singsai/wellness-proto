@@ -25,9 +25,12 @@ WellnessProto::Application.routes.draw do
   resources :sessions
   resources :locations
   resources :people
+  resources :competitions
   
   namespace :admin do
     get '', to: 'dashboard#index', as: "/"
+
+    resources :locations
     
     resources :teams do
       member do
