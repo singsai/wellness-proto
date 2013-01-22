@@ -1,7 +1,7 @@
 <%#= @team.inspect %>
-<br /><br />
-<!-- Number of members on Team --> <i><%= @team.name %>:</i> <%= @team.memberships.count %> members
-<br/><br/>
+<div class="page-header">
+<h2><%= @team.name %>:<small> (<%= @team.memberships.count %> members) </small></h2>
+<div/>
 Send weigh-in reminders for:<br/>
 <%= link_to 'Week 1', send_week1_reminder_admin_team_path, :class=>'btn btn-link' %> |
 <%= link_to 'Week 2', send_week2_reminder_admin_team_path, :class=>'btn btn-link' %> |
@@ -17,7 +17,7 @@ Send weigh-in reminders for:<br/>
   <!--td width="1%">id</td--> 
   <th>weight</th>
   <th>start date</th>
-  <th>end date</th>        
+  <th>end date</th>          
   </tr>
   </thead>
     <% m.weigh_ins.each do |w| %>  
@@ -32,6 +32,12 @@ Send weigh-in reminders for:<br/>
     </tr>
     </tbody>
     <% end %>    
+    <tr>
+      <td>Average</td>
+      <td><%= m.average_weight %></td>
+      <td></td>
+      <td></td>
+    </tr>
   
 <% end %>
 </table>

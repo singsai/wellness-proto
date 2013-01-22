@@ -16,7 +16,7 @@ class MembershipsController < ApplicationController
     
     respond_to do |format|
       if @membership.update_attributes(params[:membership])        
-        format.html { redirect_to edit_membership_path(@membership), :notice => "Yaaa" }
+        format.html { redirect_to edit_membership_path(@membership), :notice => "Your information was successfully updated." }
         #redirect_to edit_membership_path(@membership), notice:"The weight has been edited"
       else
         format.html { render :action => "edit", :notice => "Problems son"  }

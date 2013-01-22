@@ -14,7 +14,7 @@ class Admin::TeamsController < ApplicationController
       @team.memberships.each do |m|
         m.send_week1_reminder
       end      
-      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Reminder for Week 1 weigh-in sent" }      
     end        
   end
 
@@ -24,7 +24,7 @@ class Admin::TeamsController < ApplicationController
       @team.memberships.each do |m|
         m.send_week2_reminder
       end      
-      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Reminder for Week 2 weigh-in sent" }      
     end        
   end
 
@@ -34,7 +34,7 @@ class Admin::TeamsController < ApplicationController
       @team.memberships.each do |m|
         m.send_week3_reminder
       end      
-      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Reminder for Week 3 weigh-in sent" }      
     end        
   end
 
@@ -44,7 +44,7 @@ class Admin::TeamsController < ApplicationController
       @team.memberships.each do |m|
         m.send_week4_reminder
       end      
-      format.html { redirect_to admin_team_path(params[:id]), :notice => "Yaaa" }      
+      format.html { redirect_to admin_team_path(params[:id]), :notice => "Reminder for Week 4 weigh-in sent" }      
     end        
   end
   

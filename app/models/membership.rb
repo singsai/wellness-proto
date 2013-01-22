@@ -32,6 +32,14 @@ class Membership < ActiveRecord::Base
   
   before_validation :check_phone#, :only => :edit
   
+  def average_weight
+    weights = []
+    self.weigh_ins.each do |wi|
+      weights << wi.weight unless wi.weight.nil?
+    end  
+    weights.inject(:+).to_f/self.weigh_ins.count    
+  end
+  
   def send_first_reminder
     i=0
     self.weigh_ins.each do |wi|
