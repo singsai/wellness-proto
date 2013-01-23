@@ -1,3 +1,8 @@
 <div class="page-header">
 <h2><%= @team.name %>:<small> (<%= @team.memberships.count %> members) </small></h2>
 <div/>
+Send weigh-in reminders for:<br/>
+<%= link_to 'Week 1', send_week1_reminder_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 2', send_week2_reminder_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 3', send_week3_reminder_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 4', send_week4_reminder_team_path, :class=>'btn btn-default' %>
