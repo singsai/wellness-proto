@@ -6,3 +6,33 @@ Send weigh-in reminders for:<br/>
 <%= link_to 'Week 2', send_week2_reminder_team_path, :class=>'btn btn-default' %> 
 <%= link_to 'Week 3', send_week3_reminder_team_path, :class=>'btn btn-default' %> 
 <%= link_to 'Week 4', send_week4_reminder_team_path, :class=>'btn btn-default' %>
+
+<% @team.memberships.each do |m| %>
+<table class="table table-bordered table-hover table-nonfluid">
+  <caption><%= "#{m.user.email} " %><%= "(#{Location.find(m.location_id).name}) " if m.location_id %></caption>
+  <thead>  
+  <tr>
+  <th>week</th>
+  <!--td width="1%">id</td--> 
+  <th>weight</th>
+  <th>start date</th>
+  <th>end date</th>  
+  <!--th>reminder</th-->      
+  </tr>
+  </thead>
+    <% m.weigh_ins.each do |w| %>  
+    <tbody>
+    <tr>
+    <td><%= "#{w.week}" %> </td>
+    <!--td><%#= "#{w.id}" %> </td--> 
+    <td><%= current_user[0].user_id == w.membership.user.id ? w.weight : ("filled" if w.weight)  %></td>
+    <td><%= "#{w.start_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.start_date %> </td>
+    <td><%= "#{w.end_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.end_date %> </td>                   
+    <!--td>
+       
+    </td-->
+    </tr>
+    </tbody>
+    <% end %>    
+</table>  
+<% end %>
