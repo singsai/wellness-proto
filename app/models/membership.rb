@@ -12,7 +12,7 @@
 #
 
 require 'rufus/mnemo'
-require 'pry'
+#require 'pry'
 
 class Membership < ActiveRecord::Base  
   include Assignable

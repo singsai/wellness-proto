@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 
 class WeighIn < ActiveRecord::Base
   attr_accessible :weight, :membership_id

@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 class Admin::TeamsController < ApplicationController
   def index
     @teams = Team.all

@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 
 class MembershipMailer < ActionMailer::Base
   default :from => "bahh@bah.com"

@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 class LocationsController < ApplicationController
   def new
 #binding.pry    

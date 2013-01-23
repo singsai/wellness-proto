@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 class MembershipsController < ApplicationController
   def show
     @membership = Membership.find(params[:id])

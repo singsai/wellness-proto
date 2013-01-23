@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 class CompetitionsController < ApplicationController
   def index
     @competitions = Competition.all
