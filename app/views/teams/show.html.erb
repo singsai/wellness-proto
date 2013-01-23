@@ -8,5 +8,9 @@ Send weigh-in reminders for:<br/>
 <%= link_to 'Week 4', send_week4_reminder_team_path, :class=>'btn btn-default' %>
 
 <% @team.memberships.each do |m| %>
+  <% m.weigh_ins.each do |w| %>  
+    <%= "#{w.start_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.start_date %>
+  <% end %>   
+
 
 <% end %>
