@@ -28,7 +28,7 @@
   <%= f.text_field :phone_number, :placeholder => "area code-phone number" %>
   <br /><br />
   <%= f.label :location_id %>
-  <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true} %>
+  <%= f.collection_select :location_id, Location.order('name ASC').all, :id, :name, {:prompt => true} %>
   <br /><br />
   <ul class="unstyled" style="padding-left:20px">
     <strong>Weigh-Ins</strong>
