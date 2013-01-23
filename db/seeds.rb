@@ -7,6 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
+puts "Creating first competition"
+Competition.create(name:'Wellness Cup 2013', start_date:"March 4, 2013")
+
+puts "Creating first locations"
+Location.create(name:'ARI Maple Shade')
+Location.create(name:'ARI Mt. Laurel')
+Location.create(name:'ARI Maple Shade')
+Location.create(name:'BMW Mt. Laurel')
+
 puts "Importing countries..."
 CSV.foreach(Rails.root.join("countries.csv"), headers: true) do |row|
   Kountry.create! do |kountry|

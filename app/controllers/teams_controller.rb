@@ -17,13 +17,11 @@ class TeamsController < ApplicationController
 
   def create    
     @team = Team.new(params[:team])
-    @team.competition_id = Competition.first.id
-  
+    @team.competition_id = 0#Competition.first.id
     respond_to do |format|
-      if @team.save        
-#binding.pry        
+      if @team.save                
         params[:team][:users_attributes].values.map do |member|      
-          @member = User.where(:email => member["email"])#.last  #Change this later since emails should be unique anyway  
+          @member = User.where(:email => member["email"]).last  #Change this later since emails should be unique anyway  
           @membership = Membership.new
           @membership.assign \
            :team_id => @team.id, 
@@ -34,11 +32,13 @@ class TeamsController < ApplicationController
           @membership.save!
           4.times { @membership.weigh_ins.create }
         end
+#binding.pry                  
         
-        format.html { render :action => "new", :notice => 'Team was successfully created.' }
+        
+        format.html { redirect_to @team, :notice => 'Team was successfully created.' }
         #format.xml  { render :xml => @team, :status => :created, :location => @team }
       else
-        format.html { render :action => "new", :notice => "Problems son"  }
+        format.html { render :action => "new", :notice => "We have a problem"  }
         #format.xml  { render :xml => @team.errors }
       end
     end

@@ -3,10 +3,10 @@
 <h2><%= @team.name %>:<small> (<%= @team.memberships.count %> members) </small></h2>
 <div/>
 Send weigh-in reminders for:<br/>
-<%= link_to 'Week 1', send_week1_reminder_admin_team_path, :class=>'btn btn-link' %> |
-<%= link_to 'Week 2', send_week2_reminder_admin_team_path, :class=>'btn btn-link' %> |
-<%= link_to 'Week 3', send_week3_reminder_admin_team_path, :class=>'btn btn-link' %> |
-<%= link_to 'Week 4', send_week4_reminder_admin_team_path, :class=>'btn btn-link' %>
+<%= link_to 'Week 1', send_week1_reminder_admin_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 2', send_week2_reminder_admin_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 3', send_week3_reminder_admin_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 4', send_week4_reminder_admin_team_path, :class=>'btn btn-default' %>
 
 <% @team.memberships.each do |m| %>
 <table class="table table-bordered table-hover table-nonfluid">
@@ -34,7 +34,7 @@ Send weigh-in reminders for:<br/>
     <% end %>    
     <tr>
       <td>Average</td>
-      <td><%= m.average_weight %></td>
+      <td><%= m.average_weight unless m.average_weight == 0%></td>
       <td></td>
       <td></td>
     </tr>

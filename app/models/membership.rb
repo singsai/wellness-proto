@@ -37,7 +37,11 @@ class Membership < ActiveRecord::Base
     self.weigh_ins.each do |wi|
       weights << wi.weight unless wi.weight.nil?
     end  
-    weights.inject(:+).to_f/self.weigh_ins.count    
+    if weights.length == self.weigh_ins.count  
+      weights.inject(:+).to_f/self.weigh_ins.count
+    else
+      "incomplete"
+    end    
   end
   
   def send_first_reminder

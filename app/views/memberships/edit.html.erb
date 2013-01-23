@@ -14,11 +14,10 @@
     </ul>
   </div>                
 <% end %>
-    
-  Team <%= @membership.team_id %> 
-  <br />
-  <%= @membership.user.email %>
-  <br /><br />
+
+<div class="page-header">
+<h2><%= @membership.user.email %></h2>
+<div/>    
   <%#= f.label :country_code %><%#= f.text_field :country_code, :size=>"4", :placeholder => "1" %> 
   <%#= f.collection_select :country_code, Country.order(:name), :id, :name, {:prompt => "Please select if you own a non-US phone number"} %>
   <%= f.label :country_code, "Please change this if you own a non-US phone number" %> 
@@ -30,12 +29,14 @@
   <br /><br />
   <%= f.label :location_id %>
   <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true} %>
-  <ul>
+  <br /><br />
+  <ul class="unstyled" style="padding-left:20px">
+    <strong>Weigh-Ins</strong>
     <%= f.nested_fields_for :weigh_ins do |f| %>
-      <li>Week <%= f.object.week %> <%= f.text_field :weight %></li>      
+      <li><span class="control-label">Week <%= f.object.week %></span> <%= f.text_field :weight, :class=>"span1" %></li>      
     <% end %>
   </ul>
-  <%= f.submit %>
+  <%= f.submit "Update information", class: "btn btn-inverse" %>
 <% end %>
 
 

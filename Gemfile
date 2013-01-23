@@ -5,13 +5,14 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'awesome_nested_fields'
 gem 'rufus-mnemo'
 gem 'countries'
 gem 'phony_rails'
+gem 'jquery-rails'
 
 group :development do
+  gem 'sqlite3'
   gem 'annotate'
   gem 'pry'
   gem 'mailcatcher'
@@ -31,7 +32,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+group :production do
+  gem 'pg', '0.12.2'
+end
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

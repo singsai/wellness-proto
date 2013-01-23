@@ -1,5 +1,7 @@
 <% provide(:title, 'Team Signup') %>
-<h1>Team Sign Up</h1>
+<div class="page-header">
+<h2>Team Sign Up</h2>
+</div>
 <%#= @bert = "hello" %>
 <script>
  window.captain_email = "ntang2@holmanauto.com";
@@ -7,6 +9,7 @@
  var max_team_members = 10;
 
 $(document).ready(function(e) {
+  $('#team_users_attributes_0_email').attr("placeholder", "Team Chief (you)")
   console.log('Total # of remove links: '+ $('.remove').length);
   
   for(i=0; i<$('.remove').length; i++){
@@ -51,10 +54,10 @@ $(document).ready(function(e) {
 </script>
 
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for @team do |f| %>
+  <div class="span10" style="padding-left:30px">
+    <%= form_for @team, :html=>{:class=>"form-horizontal"} do |f| %>
       <% if @team.errors.any? %>
-        <%= f.object.errors.inspect %>
+        <%#= f.object.errors.inspect %>
         <div id="error_explanation">
           <div class="alert alert-error">
             The form contains <%= pluralize_without_count(@team.errors.count, "error") %>.
@@ -67,7 +70,7 @@ $(document).ready(function(e) {
         </div>                
       <% end %>
     
-      <div class="field">
+      <div class="control-group">
         <%= f.label :name, "Team Name" %>
         <%= f.text_field :name, :tabindex => 1 %>
         <br /><br />
@@ -75,20 +78,21 @@ $(document).ready(function(e) {
         <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true}, {:tabindex => 1} %>
       </div>
 
-      <h2>Members</h2>      
+      <legend>Members</legend>            
       <%#= text_field_tag 'captain', current_user.email, :readonly => true %>
-      <div class="items">
+      <a id="add_member" href="#" class="add btn-link", tabindex = "1", style="margin-left:120px">add another member</a>
+      <div class="items control-group" style="padding-left:20px">
         <%= f.nested_fields_for :users do |f| %>        
           <fieldset class="item">
+            <label for="inputEmail">Email</label>
             <%= f.text_field :email, :tabindex => 1 %>
             <a href="#" class="remove">x</a>
             <%= f.hidden_field :id %>
             <%= f.hidden_field :_destroy %>
           </fieldset>
         <% end %>
-      </div>
-      <a id="add_member" href="#" class="add", tabindex = "1">add member</a>      
- 
+      </div>            
+      
       <div class="actions"><%= f.submit "Sign Up", class: "btn btn-inverse", :tabindex => 1 %></div>
     <% end %>
   </div>

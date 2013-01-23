@@ -4,10 +4,10 @@
 <h2><%= @team.name %>:<small> (<%= @team.memberships.count %> members) </small></h2>
 <div/>
 Send weigh-in reminders for:<br/>
-<%= link_to 'Week 1', send_week1_reminder_team_path, :class=>'btn btn-link' %> 
-<%= link_to 'Week 2', send_week2_reminder_team_path, :class=>'btn btn-link' %> 
-<%= link_to 'Week 3', send_week3_reminder_team_path, :class=>'btn btn-link' %> 
-<%= link_to 'Week 4', send_week4_reminder_team_path, :class=>'btn btn-link' %>
+<%= link_to 'Week 1', send_week1_reminder_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 2', send_week2_reminder_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 3', send_week3_reminder_team_path, :class=>'btn btn-default' %> 
+<%= link_to 'Week 4', send_week4_reminder_team_path, :class=>'btn btn-default' %>
 
 <% @team.memberships.each do |m| %>
 <table class="table table-bordered table-hover table-nonfluid">
@@ -27,7 +27,7 @@ Send weigh-in reminders for:<br/>
     <tr>
     <td><%= "#{w.week}" %> </td>
     <!--td><%#= "#{w.id}" %> </td--> 
-    <td><%= current_user[0].user_id == w.membership.user.id ? w.weight : "filled"  %></td>
+    <td><%= current_user[0].user_id == w.membership.user.id ? w.weight : ("filled" if w.weight)  %></td>
     <td><%= "#{w.start_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.start_date %> </td>
     <td><%= "#{w.end_date.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y')}" if w.end_date %> </td>                   
     <!--td>
