@@ -38,7 +38,7 @@ class TeamsController < ApplicationController
         temp_user = User.find_by_email(params[:team][:users_attributes]["0"][:email])
         session[:shib] = Membership.where(user_id:temp_user.id)[0].shib
         
-        format.html { redirect_to @team, :notice => 'Team was successfully created.' }
+        format.html { redirect_to @team, :notice => "Team #{@team.name} was successfully created. Please check your email to view your secret word (You'll need this to log back in again next time). An email was also automatically sent out to your team members containing their login information."}
         #format.xml  { render :xml => @team, :status => :created, :location => @team }
       else
         format.html { render :action => "new", :notice => "We have a problem"  }
