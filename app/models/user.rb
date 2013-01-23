@@ -16,10 +16,17 @@ class User < ActiveRecord::Base
 
   belongs_to :team
   has_many :memberships
+
+  email_regex =/\A[a-z0-9][\w+\-.]+@[a-z\d.]+\.[a-z]+\z/i
   
-  validates_presence_of :email
+  #validates_presence_of :email
+  
+  validates :email, :presence   => true,
+                    :format     => { :with => email_regex },
+                    :uniqueness => { :case_sensitive => false }  
+  
 # validates :email, presence: true, uniqueness: { case_sensitive: false }  
-# before_save { |user| user.email = email.downcase }
+ before_save { |user| user.email = email.downcase }
 
   private
     def create_remember_token
