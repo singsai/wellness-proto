@@ -166,4 +166,5 @@ DEPENDENCIES
   rufus-mnemo
   sass-rails (~> 3.2.3)
   sqlite3
+  thin
   uglifier (>= 1.0.3)
