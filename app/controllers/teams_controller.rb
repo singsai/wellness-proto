@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    2.times { @team.users.build } 
+    5.times { @team.users.build } 
         
     respond_to do |format|
       format.html # new.html.erb

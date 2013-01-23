@@ -78,7 +78,9 @@ $(document).ready(function(e) {
         <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => true}, {:tabindex => 1} %>
       </div>
 
-      <legend>Members</legend>            
+      <legend>Members 
+        <small>(You can add up to 5 more members)</small>
+      </legend>       
       <%#= text_field_tag 'captain', current_user.email, :readonly => true %>
       <a id="add_member" href="#" class="add btn-link", tabindex = "1", style="margin-left:120px">add another member</a>
       <div class="items control-group" style="padding-left:20px">
