@@ -5,12 +5,13 @@ WellnessProto::Application.routes.draw do
 
   get "dashboard/index"
 
-  #root to: ':memberships#show/:id' 
+  root to: 'pages#index' 
 
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
+  resources :pages
 
   resources :teams do
     member do
