@@ -5,12 +5,16 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <link rel="shortcut icon" href="/images/favicon.ico">
+  <% image_tag("images/favicon.ico") %>
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container">
   <% if current_user %>
-    <%= link_to 'Logout', logout_path %>
+    Logged in as <%= link_to "#{current_user[0].user.email}", edit_membership_path(Membership.find(current_user[0].user).id) %> 
+    <span class="pull-right"><%= link_to 'Log out', logout_path %></span>
+    <br/>
+    <%= link_to "Click here to Edit your profile.", edit_membership_path(Membership.find(current_user[0].user).id) %>    
+    <%#= "You are Team Chief" if @team && current_user && @team.memberships[0].user.email == current_user[0].user.email %>
   <% else %>
     <%= link_to 'Login', login_path %>
   <% end %>
