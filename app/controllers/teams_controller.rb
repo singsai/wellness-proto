@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 
 class TeamsController < ApplicationController
   def show
@@ -30,10 +30,13 @@ class TeamsController < ApplicationController
            :country_code => "US",
            :location_id => @team.location_id
           @membership.save!
+          @membership.send_registration_email
           4.times { @membership.weigh_ins.create }
         end
-#binding.pry                  
         
+        #Automatically login: need to move this to its own method later
+        temp_user = User.find_by_email(params[:team][:users_attributes]["0"][:email])
+        session[:shib] = Membership.where(user_id:temp_user.id)[0].shib
         
         format.html { redirect_to @team, :notice => 'Team was successfully created.' }
         #format.xml  { render :xml => @team, :status => :created, :location => @team }

@@ -14,6 +14,7 @@ WellnessProto::Application.routes.draw do
 
   resources :teams do
     member do
+      get :send_registration_email
       get :send_week1_reminder
       get :send_week2_reminder
       get :send_week3_reminder

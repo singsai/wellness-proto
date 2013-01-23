@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
       session[:shib] = params[:shib]
       membership = user.memberships.first    
       redirect_to edit_membership_path(membership)
+    else
+      redirect_to new_session_path, :notice => "Your email or password was incorrect"
     end
   end
   

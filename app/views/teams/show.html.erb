@@ -9,7 +9,14 @@ Send weigh-in reminders for:<br/>
 
 <% @team.memberships.each do |m| %>  
   <table class="table table-bordered table-hover table-nonfluid">
-    <caption><%= "#{m.user.email} " %><%= "(#{Location.find(m.location_id).name}) " if m.location_id %></caption>
+    <caption>
+      <% if current_user && current_user[0].user_id == m.user_id %>
+        <%= link_to m.user.email %> 
+      <% else %>
+        <%= "#{m.user.email} " %>
+      <% end %>
+      </caption>
+    
     <thead>  
     <tr>
     <th>week</th>
@@ -31,8 +38,14 @@ Send weigh-in reminders for:<br/>
       <!--td>
 
       </td-->
-      </tr>
+      </tr>      
       </tbody>
       <% end %>    
+      <tr>
+        <td>Average</td>
+        <td><%= m.average_weight unless m.average_weight == 0%></td>
+        <td></td>
+        <td></td>
+      </tr>      
   </table>  
 <% end %>

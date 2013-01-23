@@ -44,6 +44,10 @@ class Membership < ActiveRecord::Base
     end    
   end
   
+  def send_registration_email
+    MembershipMailer.registration_email(self.user.email, self.shib).deliver
+  end
+  
   def send_first_reminder
     i=0
     self.weigh_ins.each do |wi|
