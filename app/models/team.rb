@@ -15,7 +15,7 @@ class Team < ActiveRecord::Base
   belongs_to :competition  
   belongs_to :location
 
-  has_many :memberships
+  has_many :memberships, :order => "id ASC"
 
   has_many :users    
   accepts_nested_attributes_for :users
