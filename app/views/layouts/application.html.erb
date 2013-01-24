@@ -9,18 +9,24 @@
 </head>
 <body>
   <div class="container">
+  <%# session[:shib] = nil%>  
   <% if current_user %>
-    Logged in as <%= link_to "#{current_user[0].user.email}", edit_membership_path(Membership.find(current_user[0].user).id) %> 
+    Logged in as <%= link_to "#{current_user[0].user.email}", edit_membership_path(Membership.find(current_user[0].id)) %> 
     <span class="pull-right"><%= link_to 'Log out', logout_path %></span>
     <br/>
     <%= link_to "View your Team Page", team_path(current_user[0].team_id) %>
     <br />
-    <%= link_to "Click here to Edit your profile.", edit_membership_path(Membership.find(current_user[0].user).id) %>    
+    <%= link_to "Click here to Edit your profile.", edit_membership_path(Membership.find(current_user[0].id)) %>    
     <%#= "You are Team Chief" if @team && current_user && @team.memberships[0].user.email == current_user[0].user.email %>
   <% else %>
     <%= link_to 'Login', login_path %>
+    
+    <% if session[:email].nil? %>
+      <span class="pull-right"><%= link_to 'Start a New Team', new_team_path %></span>
+    <% end %>
+    
   <% end %>
-  <br />
+  <br /><br />
 	<% flash.each do |key, value| %>
   	<div class="flash <%= key %> ">
   		<%= value %>

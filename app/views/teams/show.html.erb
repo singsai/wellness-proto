@@ -1,7 +1,6 @@
 <div class="page-header">
 <h2><%= @team.name %>:<small> (<%= @team.memberships.count %> members) </small></h2>
 <div/>
-
 <% if current_user && @team.memberships[0].user.email == current_user[0].user.email %>
 Send weigh-in reminders for:<br/>
   <%= link_to 'Week 1', send_week1_reminder_team_path, :class=>'btn btn-default' %> 

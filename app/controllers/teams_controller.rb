@@ -33,8 +33,22 @@ class TeamsController < ApplicationController
           @membership.send_registration_email
           4.times { @membership.weigh_ins.create }
         end
-        
         #Automatically login: need to move this to its own method later
+
+        session[:email] = Team.last.memberships[0].user.email #params[:team][:users_attributes]["0"][:email]                
+        #u = User.where(email: session[:email])        
+        session[:shib] = Team.last.memberships[0].shib #Membership.where(user_id:u[0].id)[0].shib
+# require 'pry'
+# binding.pry
+        #@current_user ||= Membership.where(:user_id => u[0].id)
+        
+        # temp_user = User.find_by_email(params[:team][:users_attributes]["0"][:email])
+        # session[:email] = params[:team][:users_attributes]["0"][:email]
+        # session[:shib] = Membership.where(user_id:temp_user.id)[0].shib
+        # 
+        # u = User.where(email: session[:email])
+        # @current_user ||= Membership.where(:user_id => u[0].id, :shib => session[:shib] )
+        
 #        temp_user = User.find_by_email(params[:team][:users_attributes]["0"][:email])
 #        session[:shib] = Membership.where(user_id:temp_user.id)[0].shib
         
