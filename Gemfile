@@ -10,6 +10,7 @@ gem 'rufus-mnemo'
 gem 'countries'
 gem 'phony_rails'
 gem 'jquery-rails'
+gem 'hpricot'
 
 group :development do
   gem 'sqlite3'

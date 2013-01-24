@@ -15,3 +15,16 @@
 //= require jquery.nested-fields
 //= require bootstrap
 //= require_tree .
+function submitTeam()
+{
+	$('#add_member').toggle();
+	//document.getElementById("custom_flash_warning_div").style.display="block";
+	//$('#asset_file').attr("disabled", "disabled");
+	//$('custom_flash_warning_div').toggle();
+	// $('#submit_button').attr('onclick','').unbind('click');		
+	//$('#flash_notice').text("Your task is being submitted. Please wait.")
+	//$('#submission_text').text("Your task is being submitted. Please wait.");	
+	$('#new_team').submit();	
+	//return false;
+	//$(document).bind("keydown", disableF5);
+}

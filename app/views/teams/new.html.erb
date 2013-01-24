@@ -18,6 +18,11 @@ $(document).ready(function(e) {
     $('#remove' + i).text('');    
     //$('#remove' + i).toggle();
   }    
+  
+  if($('#error_explanation').length > 0){
+    $('#add_member').toggle();
+  }
+  
   // $('.remove')[0].id = "remove01";
   // $('#remove01').toggle();
 
@@ -34,10 +39,13 @@ $(document).ready(function(e) {
         }                  
       },
       afterRemove: function(item) {
-        if($('#add_member').is(':visible')==false && $('.item').length <= 10 ) {
-          $('#add_member').toggle();
-        }                
-        console.log(item + ' was removed.');
+        
+        if($('#error_explanation').length == 0){        
+          if($('#add_member').is(':visible')==false && $('.item').length <= 10 ) {
+            $('#add_member').toggle();
+          }                
+          console.log(item + ' was removed.');
+        }
       }      
                         
     });
@@ -97,6 +105,7 @@ $(document).ready(function(e) {
       </div>            
       
       <div class="actions"><%= f.submit "Sign Up", class: "btn btn-inverse", :tabindex => 1 %></div>
+      <%#= link_to 'Continue', "#", :onclick=>"submitTeam()", :id => "submit_button", :class=> "button submit" %>
     <% end %>
   </div>
 </div>

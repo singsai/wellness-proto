@@ -20,18 +20,21 @@ class TeamsController < ApplicationController
     @team.competition_id = 0#Competition.first.id
     respond_to do |format|
       if @team.save                
+        # require 'pry'; binding.pry
         params[:team][:users_attributes].values.map do |member|      
-          @member = User.where(:email => member["email"]).last  #Change this later since emails should be unique anyway  
-          @membership = Membership.new
-          @membership.assign \
-           :team_id => @team.id, 
-           :user_id => @member.id, 
-           :role_id => 0,
-           :country_code => "US",
-           :location_id => @team.location_id
-          @membership.save!
-          @membership.send_registration_email
-          4.times { @membership.weigh_ins.create }
+          unless member["_destroy"] == "true"
+            @member = User.where(:email => member["email"]).last  #Change this later since emails should be unique anyway  
+            @membership = Membership.new
+            @membership.assign \
+             :team_id => @team.id, 
+             :user_id => @member.id, 
+             :role_id => 0,
+             :country_code => "US",
+             :location_id => @team.location_id
+            @membership.save!
+            @membership.send_registration_email
+            4.times { @membership.weigh_ins.create }
+          end
         end
         #Automatically login: need to move this to its own method later
 
@@ -56,6 +59,7 @@ class TeamsController < ApplicationController
         #format.xml  { render :xml => @team, :status => :created, :location => @team }
       else
         format.html { render :action => "new", :notice => "We have a problem"  }
+        
         #format.xml  { render :xml => @team.errors }
       end
     end
