@@ -3,8 +3,9 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.find_by_email(params[:email])
+    user = User.find_by_email(params[:email])    
     if params[:shib] == user.memberships.pluck(:shib).first
+      session[:email] = params[:email]
       session[:shib] = params[:shib]
       membership = user.memberships.first    
       redirect_to edit_membership_path(membership)
@@ -15,6 +16,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:shib] = nil
+    session[:email] = nil
     redirect_to new_session_path
   end
 end

@@ -30,7 +30,7 @@ div.field, div.actions {
 .field_with_errors {
   padding: 2px;
   background-color: red;
-  display: inline;  
+  display: table;  
 }
 
 #error_explanation {
@@ -39,7 +39,7 @@ div.field, div.actions {
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #fffff0;
+  background-color: #f0f0f0;
 }
 
 #error_explanation h2 {
