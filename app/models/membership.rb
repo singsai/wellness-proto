@@ -21,7 +21,7 @@ class Membership < ActiveRecord::Base
   #belongs_to :kountry
   belongs_to :location
   
-  has_many :weigh_ins
+  has_many :weigh_ins, :order => "id ASC"
   accepts_nested_attributes_for :weigh_ins
   
   before_create :create_shib #:create_remember_token
